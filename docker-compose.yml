@@ -1,0 +1,17 @@
+services:
+  # 'app' é o nome que damos ao nosso serviço/contêiner. Poderia ser qualquer nome, como 'web' ou 'backend'.
+  app:
+    # A instrução 'build: .' diz ao Docker Compose para construir uma imagem a partir do Dockerfile
+    # localizado no mesmo diretório ('.') que este arquivo docker-compose.yml.
+    build: .
+    # Define um nome fixo para o contêiner. Isso facilita a referência em comandos docker (ex: docker logs imersao_devops_api).
+    container_name: api
+    # Mapeia a porta 8000 do seu computador (host) para a porta 8000 dentro do contêiner.
+    # O formato é "HOST:CONTAINER". Isso permite que você acesse a API em http://localhost:8000.
+    ports:
+      - "8000:8000"
+    # Monta o diretório atual ('.') do seu computador no diretório '/app' dentro do contêiner.
+    # Isso cria um vínculo em tempo real: qualquer alteração nos seus arquivos locais será refletida
+    # instantaneamente dentro do contêiner, o que é essencial para o hot-reloading funcionar.
+    volumes:
+      - .:/app
